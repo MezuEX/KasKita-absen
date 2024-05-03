@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Kas Desa</title>
+    <style type="text/css" media="all">
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    padding: 0;
+    margin: 0;
+}
+
+header {
+    background: #333;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+}
+
+section {
+    margin: 20px 0;
+}
+
+/* Gaya untuk form */
+#form-section {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+#data-form label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+#data-form input[type='date'],
+#data-form input[type='text'],
+#data-form input[type='number'] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+#data-form button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#data-form button:hover {
+    background-color: #4cae4c;
+}
+
+/* Gaya untuk tabel */
+#data-section {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f8f8f8;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Gaya untuk total-section */
+#total-section {
+    background: #fff;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+#total-section p {
+    font-size: 1.2em;
+    margin: 10px 0;
+    color: #333;
+}
+
+#total-section p:nth-child(3) {
+    font-weight: bold;
+    color: #28a745; /* Warna hijau untuk menandakan sisa uang kas */
+}
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Data Kas Desa</h1>
+    </header>
+
+    <section id="form-section">
+        <form id="data-form">
+            <label for="tanggal">Tanggal:</label>
+            <input type="date" id="tanggal" name="tanggal" required>
+
+            <label for="keterangan">Keterangan:</label>
+            <input type="text" id="keterangan" name="keterangan" required>
+
+            <label for="pemasukan">Pemasukan:</label>
+            <input type="number" id="pemasukan" name="pemasukan" required>
+
+            <label for="pengeluaran">Pengeluaran:</label>
+            <input type="number" id="pengeluaran" name="pengeluaran" required>
+
+            <button type="submit">Simpan</button>
+        </form>
+    </section>
+
+    <section id="data-section">
+        <table id="data-table">
+            <thead>
+                <tr>
+                    <th>Tanggal</th>
+                    <th>Keterangan</th>
+                    <th>Pemasukan</th>
+                    <th>Pengeluaran</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Data akan dimuat di sini -->
+            </tbody>
+        </table>
+    </section>
+    <div id="total-section">
+    <!-- Total pemasukan, pengeluaran, dan sisa uang kas akan ditampilkan di sini -->
+    </div>
+  
+  <script type="text/javascript" charset="utf-8">
+    document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('data-form');
+    const dataTable = document.getElementById('data-table').getElementsByTagName('tbody')[0];
+    const totalSection = document.getElementById('total-section');
+
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        // Mendapatkan nilai dari setiap input
+        const tanggal = document.getElementById('tanggal').value;
+        const keterangan = document.getElementById('keterangan').value;
+        const pemasukan = parseFloat(document.getElementById('pemasukan').value);
+        const pengeluaran = parseFloat(document.getElementById('pengeluaran').value);
+
+        // Membuat objek data
+        const data = {
+            tanggal,
+            keterangan,
+            pemasukan,
+            pengeluaran
+        };
+
+        // Menambahkan data ke localStorage
+        tambahDataKeLocalStorage(data);
+
+        // Menampilkan data ke tabel
+        tampilkanData();
+    });
+    
+    // Fungsi untuk menghapus data dari localStorage dan tabel
+    function hapusData(index) {
+        const dataKasDesa = JSON.parse(localStorage.getItem('dataKasDesa')) || [];
+        dataKasDesa.splice(index, 1);
+        localStorage.setItem('dataKasDesa', JSON.stringify(dataKasDesa));
+        tampilkanData();
+    }
+
+    // Fungsi untuk menambahkan data ke localStorage
+    function tambahDataKeLocalStorage(data) {
+        const dataKasDesa = JSON.parse(localStorage.getItem('dataKasDesa')) || [];
+        dataKasDesa.push(data);
+        localStorage.setItem('dataKasDesa', JSON.stringify(dataKasDesa));
+    }
+
+    // Fungsi untuk menampilkan data dari localStorage ke tabel dan menghitung total
+    function tampilkanData() {
+        dataTable.innerHTML = '';
+        let totalPemasukan = 0;
+        let totalPengeluaran = 0;
+        const dataKasDesa = JSON.parse(localStorage.getItem('dataKasDesa')) || [];
+
+        dataKasDesa.forEach((item, index) => {
+            const row = dataTable.insertRow();
+            row.innerHTML = `
+                <td>${item.tanggal}</td>
+                <td>${item.keterangan}</td>
+                <td>${item.pemasukan}</td>
+                <td>${item.pengeluaran}</td>
+            `;
+            totalPemasukan += item.pemasukan;
+            totalPengeluaran += item.pengeluaran;
+
+            // Menambahkan event listener untuk tekan lama
+            row.addEventListener('contextmenu', function(event) {
+                event.preventDefault();
+                const confirmDelete = confirm('Apakah Anda yakin ingin menghapus data ini?');
+                if (confirmDelete) {
+                    hapusData(index);
+                }
+            });
+        });
+
+        // Menghitung sisa uang kas
+        const sisaUangKas = totalPemasukan - totalPengeluaran;
+
+        // Menampilkan total pemasukan, pengeluaran, dan sisa uang kas
+        totalSection.innerHTML = `
+            <p>Total Pemasukan: ${totalPemasukan}</p>
+            <p>Total Pengeluaran: ${totalPengeluaran}</p>
+            <p>Sisa Uang Kas: ${sisaUangKas}</p>
+        `;
+    }
+
+    // Menampilkan data saat halaman dimuat
+    tampilkanData();
+});
+  </script>
+</body>
+</html>
