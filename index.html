@@ -211,10 +211,10 @@ tr:hover {
   width: 250px;
   position: fixed;
   top: 0;
-  left: -250px; /* Sidebar default position */
+  right: -250px; /* Sidebar default position */
   background-color: #333;
   overflow-x: hidden;
-  transition: left 0.3s ease;
+  transition: right 0.3s ease;
 }
 
 .sidebar h1 {
@@ -222,7 +222,7 @@ tr:hover {
 }
 
 .sidebar.show {
-  left: 0; /* Show sidebar */
+  right: 0; /* Show sidebar */
 }
 
 .sidebar-header {
@@ -265,8 +265,9 @@ tr:hover {
 .sidebar-close {
   position: absolute;
   top: 20px;
-  right: 20px;
+  left: 20px;
   color: #fff;
+  font-size: 120%;
   cursor: pointer;
 }
 
@@ -278,7 +279,7 @@ tr:hover {
 
 .sidebar-toggle {
   position: fixed;
-  top: 35px;
+  top: 31px;
   right: 20px; /* Menempatkan tombol di tepi kanan */
   color: #fff;
   cursor: pointer;
@@ -286,6 +287,7 @@ tr:hover {
 
 .sidebar-toggle i {
   font-size: 20px;
+  font-size: 150%;
 }
 
 @media screen and (max-width: 768px) {
