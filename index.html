@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Kas Desa</title>
+    <title>KasKita</title>
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.1.0/css/all.css" integrity="sha512-ajhUYg8JAATDFejqbeN7KbF2zyPbbqz04dgOLyGcYEk/MJD3V+HJhJLKvJ2VVlqrr4PwHeGTTWxbI+8teA7snw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style type="text/css" media="all">
-      * {
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -24,17 +26,22 @@ header {
     color: #fff;
     padding: 20px 0;
     text-align: center;
+    display: flex;
+    justify-content: space-between;
 }
 
 header h1 {
     margin: 0;
 }
 
+.logo  {
+  
+}
+
 section {
     margin: 20px 0;
 }
 
-/* Gaya untuk form */
 #form-section {
     background: white;
     padding: 20px;
@@ -72,7 +79,6 @@ section {
     background-color: #4cae4c;
 }
 
-/* Gaya untuk tabel */
 #data-section {
     background: white;
     padding: 20px;
@@ -99,7 +105,6 @@ tr:hover {
     background-color: #f1f1f1;
 }
 
-/* Gaya untuk total-section */
 #total-section {
     background: #fff;
     padding: 20px;
@@ -117,10 +122,9 @@ tr:hover {
 
 #total-section p:nth-child(3) {
     font-weight: bold;
-    color: #28a745; /* Warna hijau untuk menandakan sisa uang kas */
+    color: #28a745;
 }
 
-/* Gaya untuk dark mode */
 .dark-mode #data-form input[type='date'],
 .dark-mode #data-form input[type='text'],
 .dark-mode #data-form input[type='number'] {
@@ -138,6 +142,11 @@ tr:hover {
 }
 
 .dark-mode header {
+    background: #1c1c1c;
+    color: #ffffff;
+}
+
+.dark-mode .sidebar {
     background: #1c1c1c;
     color: #ffffff;
 }
@@ -168,7 +177,6 @@ tr:hover {
     background-color: #333;
 }
 
-/* Gaya untuk tombol dark mode */
 #dark-mode-toggle {
     padding: 10px 15px;
     background-color: #555;
@@ -189,7 +197,6 @@ tr:hover {
     transform: scale(0.95);
 }
 
-/* Gaya untuk tombol saat dark mode aktif */
 .dark-mode #dark-mode-toggle {
     background-color: #333;
     color: #ddd;
@@ -198,15 +205,114 @@ tr:hover {
 .dark-mode tr:hover{
   background-color: grey;
 }
+
+.sidebar {
+  height: 100%;
+  width: 250px;
+  position: fixed;
+  top: 0;
+  left: -250px; /* Sidebar default position */
+  background-color: #333;
+  overflow-x: hidden;
+  transition: left 0.3s ease;
+}
+
+.sidebar h1 {
+  color: #fff;
+}
+
+.sidebar.show {
+  left: 0; /* Show sidebar */
+}
+
+.sidebar-header {
+  padding: 20px;
+  text-align: center;
+}
+
+.sidebar-header h2 {
+  color: #fff;
+  margin: 0;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar ul li {
+  padding: 15px;
+  border-bottom: 1px solid #555;
+}
+
+.sidebar ul li:last-child {
+  border-bottom: none;
+}
+
+.sidebar ul li a,
+.sidebar ul li #dark-mode-toggle{
+  color: #fff;
+  text-decoration: none;
+  display: block;
+}
+
+.sidebar ul li a:hover,
+.sidebar ul li #dark-mode-toggle:hover{
+  background-color: #555;
+}
+
+.sidebar-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.content {
+  margin-left: 0;
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+}
+
+.sidebar-toggle {
+  position: fixed;
+  top: 35px;
+  right: 20px; /* Menempatkan tombol di tepi kanan */
+  color: #fff;
+  cursor: pointer;
+}
+
+.sidebar-toggle i {
+  font-size: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .sidebar {
+    width: 200px;
+  }
+}
     </style>
 </head>
 <body>
     <header>
-        <h1>Data Kas Desa</h1>
-        <button id="dark-mode-toggle">Dark Mode</button>
+        <h1>KasKita</h1>
+      <span class="sidebar-toggle" id="sidebarToggle"><i class="fas fa-align-justify"></i></i></span>
     </header>
-
-    <section id="form-section">
+    
+ <div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <h1>Menu</h1>
+      <span class="sidebar-close" id="sidebarClose"><i class="fas fa-times"></i></span>
+    </div>
+    <ul>
+      <li><button id="dark-mode-toggle">Dark Mode</button></li>
+    </ul>
+  </div>
+  
+  <div class="content">
+      <section id="form-section">
         <form id="data-form">
             <label for="tanggal">Tanggal:</label>
             <input type="date" id="tanggal" name="tanggal" required>
@@ -235,13 +341,14 @@ tr:hover {
                 </tr>
             </thead>
             <tbody>
-                <!-- Data akan dimuat di sini -->
+              
             </tbody>
         </table>
     </section>
     <div id="total-section">
-    <!-- Total pemasukan, pengeluaran, dan sisa uang kas akan ditampilkan di sini -->
+      
     </div>
+  </div>
   
   <script type="text/javascript" charset="utf-8">
     document.addEventListener('DOMContentLoaded', function() {
@@ -249,17 +356,13 @@ tr:hover {
     const dataTable = document.getElementById('data-table').getElementsByTagName('tbody')[0];
     const totalSection = document.getElementById('total-section');
 
-    // Fungsi untuk mengaktifkan atau menonaktifkan dark mode
     function toggleDarkMode() {
         const isDarkMode = document.body.classList.toggle('dark-mode');
-        // Simpan status dark mode ke localStorage
         localStorage.setItem('darkMode', isDarkMode);
     }
 
-    // Event listener untuk tombol dark mode
     document.getElementById('dark-mode-toggle').addEventListener('click', toggleDarkMode);
 
-    // Cek status dark mode saat halaman dimuat
     if (localStorage.getItem('darkMode') === 'true') {
         document.body.classList.add('dark-mode');
     }
@@ -267,13 +370,11 @@ tr:hover {
     form.addEventListener('submit', function(event) {
         event.preventDefault();
 
-        // Mendapatkan nilai dari setiap input
         const tanggal = document.getElementById('tanggal').value;
         const keterangan = document.getElementById('keterangan').value;
         const pemasukan = parseFloat(document.getElementById('pemasukan').value);
         const pengeluaran = parseFloat(document.getElementById('pengeluaran').value);
 
-        // Membuat objek data
         const data = {
             tanggal,
             keterangan,
@@ -281,21 +382,17 @@ tr:hover {
             pengeluaran
         };
 
-        // Menambahkan data ke localStorage
         tambahDataKeLocalStorage(data);
 
-        // Menampilkan data ke tabel
         tampilkanData();
     });
 
-    // Fungsi untuk menambahkan data ke localStorage
     function tambahDataKeLocalStorage(data) {
         const dataKasDesa = JSON.parse(localStorage.getItem('dataKasDesa')) || [];
         dataKasDesa.push(data);
         localStorage.setItem('dataKasDesa', JSON.stringify(dataKasDesa));
     }
 
-    // Fungsi untuk menampilkan data dari localStorage ke tabel dan menghitung total
     function tampilkanData() {
         dataTable.innerHTML = '';
         let totalPemasukan = 0;
@@ -313,7 +410,6 @@ tr:hover {
             totalPemasukan += item.pemasukan;
             totalPengeluaran += item.pengeluaran;
 
-            // Menambahkan event listener untuk tekan lama
             row.addEventListener('contextmenu', function(event) {
                 event.preventDefault();
                 const confirmDelete = confirm('Apakah Anda yakin ingin menghapus data ini?');
@@ -323,10 +419,8 @@ tr:hover {
             });
         });
 
-        // Menghitung sisa uang kas
         const sisaUangKas = totalPemasukan - totalPengeluaran;
 
-        // Menampilkan total pemasukan, pengeluaran, dan sisa uang kas
         totalSection.innerHTML = `
             <p>Total Pemasukan: ${totalPemasukan}</p>
             <p>Total Pengeluaran: ${totalPengeluaran}</p>
@@ -334,15 +428,32 @@ tr:hover {
         `;
     }
 
-    // Fungsi untuk menghapus data dari localStorage dan tabel
     function hapusData(index) {
         const dataKasDesa = JSON.parse(localStorage.getItem('dataKasDesa')) || [];
         dataKasDesa.splice(index, 1);
         localStorage.setItem('dataKasDesa', JSON.stringify(dataKasDesa));
         tampilkanData();
     }
+    
+    const sidebar = document.getElementById('sidebar');
+const sidebarToggle = document.getElementById('sidebarToggle');
+const sidebarClose = document.getElementById('sidebarClose');
+const sidebarItems = document.querySelectorAll('.sidebar ul li a');
 
-    // Menampilkan data saat halaman dimuat
+sidebarToggle.addEventListener('click', () => {
+  sidebar.classList.toggle('show');
+});
+
+sidebarClose.addEventListener('click', () => {
+  sidebar.classList.remove('show');
+});
+
+sidebarItems.forEach(item => {
+  item.addEventListener('click', () => {
+    sidebar.classList.remove('show');
+  });
+});
+    
     tampilkanData();
 });
 
