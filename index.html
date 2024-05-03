@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Kas Desa</title>
     <style type="text/css" media="all">
-* {
+      * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -119,11 +119,77 @@ tr:hover {
     font-weight: bold;
     color: #28a745; /* Warna hijau untuk menandakan sisa uang kas */
 }
+
+/* Gaya untuk dark mode */
+.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+.dark-mode header {
+    background: #1c1c1c;
+    color: #ffffff;
+}
+
+.dark-mode #form-section,
+.dark-mode #data-section,
+.dark-mode #total-section,
+.dark-mode #total-section p{
+    background: #222;
+    color: #ffffff;
+}
+
+.dark-mode #total-section p:nth-child(3) {
+    font-weight: bold;
+    color: #28a745;
+}
+
+.dark-mode table {
+    border: 1px solid #333;
+}
+
+.dark-mode th,
+.dark-mode td {
+    border-bottom: 1px solid #333;
+}
+
+.dark-mode th {
+    background-color: #333;
+}
+
+/* Gaya untuk tombol dark mode */
+#dark-mode-toggle {
+    padding: 10px 15px;
+    background-color: #555;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+#dark-mode-toggle:hover {
+    background-color: #666;
+    transform: scale(1.05);
+}
+
+#dark-mode-toggle:active {
+    transform: scale(0.95);
+}
+
+/* Gaya untuk tombol saat dark mode aktif */
+.dark-mode #dark-mode-toggle {
+    background-color: #333;
+    color: #ddd;
+}
+
     </style>
 </head>
 <body>
     <header>
         <h1>Data Kas Desa</h1>
+        <button id="dark-mode-toggle">Dark Mode</button>
     </header>
 
     <section id="form-section">
@@ -169,6 +235,21 @@ tr:hover {
     const dataTable = document.getElementById('data-table').getElementsByTagName('tbody')[0];
     const totalSection = document.getElementById('total-section');
 
+    // Fungsi untuk mengaktifkan atau menonaktifkan dark mode
+    function toggleDarkMode() {
+        const isDarkMode = document.body.classList.toggle('dark-mode');
+        // Simpan status dark mode ke localStorage
+        localStorage.setItem('darkMode', isDarkMode);
+    }
+
+    // Event listener untuk tombol dark mode
+    document.getElementById('dark-mode-toggle').addEventListener('click', toggleDarkMode);
+
+    // Cek status dark mode saat halaman dimuat
+    if (localStorage.getItem('darkMode') === 'true') {
+        document.body.classList.add('dark-mode');
+    }
+
     form.addEventListener('submit', function(event) {
         event.preventDefault();
 
@@ -192,14 +273,6 @@ tr:hover {
         // Menampilkan data ke tabel
         tampilkanData();
     });
-    
-    // Fungsi untuk menghapus data dari localStorage dan tabel
-    function hapusData(index) {
-        const dataKasDesa = JSON.parse(localStorage.getItem('dataKasDesa')) || [];
-        dataKasDesa.splice(index, 1);
-        localStorage.setItem('dataKasDesa', JSON.stringify(dataKasDesa));
-        tampilkanData();
-    }
 
     // Fungsi untuk menambahkan data ke localStorage
     function tambahDataKeLocalStorage(data) {
@@ -247,9 +320,18 @@ tr:hover {
         `;
     }
 
+    // Fungsi untuk menghapus data dari localStorage dan tabel
+    function hapusData(index) {
+        const dataKasDesa = JSON.parse(localStorage.getItem('dataKasDesa')) || [];
+        dataKasDesa.splice(index, 1);
+        localStorage.setItem('dataKasDesa', JSON.stringify(dataKasDesa));
+        tampilkanData();
+    }
+
     // Menampilkan data saat halaman dimuat
     tampilkanData();
 });
+
   </script>
 </body>
 </html>
