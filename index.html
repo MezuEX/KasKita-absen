@@ -213,18 +213,14 @@ tr:hover {
   width: 250px;
   position: fixed;
   top: 0;
-  right: -250px; /* Sidebar default position */
+  right: -250px; 
   background-color: #333;
   overflow-x: hidden;
   transition: right 0.3s ease;
 }
 
-.sidebar h1 {
-  color: #fff;
-}
-
 .sidebar.show {
-  right: 0; /* Show sidebar */
+  right: 0;
 }
 
 .sidebar-header {
@@ -232,8 +228,8 @@ tr:hover {
   text-align: center;
 }
 
-.sidebar-header h2 {
-  color: #fff;
+.sidebar-header h1 {
+  color: white;
   margin: 0;
 }
 
@@ -252,49 +248,50 @@ tr:hover {
   border-bottom: none;
 }
 
-.sidebar ul li a,
-.sidebar ul li #dark-mode-toggle{
+.sidebar ul li a {
   color: #fff;
   text-decoration: none;
   display: block;
 }
 
-.sidebar ul li a:hover,
-.sidebar ul li #dark-mode-toggle:hover{
+.sidebar ul li a:hover {
   background-color: #555;
 }
 
 .sidebar-close {
   position: absolute;
   top: 20px;
-  left: 20px;
+  right: 20px;
   color: #fff;
-  font-size: 120%;
   cursor: pointer;
 }
 
 .content {
+  margin-right: 0;
   margin-left: 0;
   padding: 20px;
   transition: margin-left 0.3s ease;
 }
 
 .sidebar-toggle {
-  position: fixed;
+  position: absolute;
   top: 31px;
-  right: 20px; /* Menempatkan tombol di tepi kanan */
+  right: 20px;
   color: #fff;
   cursor: pointer;
 }
 
 .sidebar-toggle i {
   font-size: 20px;
-  font-size: 150%;
 }
 
-@media screen and (max-width: 768px) {
+
+@media screen and (max-width:360px) {
   .sidebar {
     width: 200px;
+  }
+  #data-table {
+    font-size: 11px;
   }
 }
     </style>
