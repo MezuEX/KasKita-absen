@@ -4,459 +4,449 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KasKita</title>
-    
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.1.0/css/all.css" integrity="sha512-ajhUYg8JAATDFejqbeN7KbF2zyPbbqz04dgOLyGcYEk/MJD3V+HJhJLKvJ2VVlqrr4PwHeGTTWxbI+8teA7snw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.1.0/css/all.css" integrity="sha512-ajhUYg8JAATDFejqbeN7KbF2zyPbbqz04dgOLyGcYEk/MJD3V+HJhJLKvJ2VVlqrr4PwHeGTTWxbI+8teA7snw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style type="text/css" media="all">
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+        /* Style yang selaras dengan halaman sebelumnya */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        *,*:before,*:after{-webkit-tap-highlight-color:rgba(0,0,0,0);-webkit-tap-highlight-color:transparent}
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            padding: 0;
+            margin: 0;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding: 15px 30px;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: background-color 0.3s, color 0.3s;
+        }
 
-*,*:before,*:after{-webkit-tap-highlight-color:rgba(0,0,0,0);-webkit-tap-highlight-color:transparent}
-
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
-    background-color: #f4f4f4;
-    padding: 0;
-    margin: 0;
-}
-
-header {
-    background: #333;
-    color: #fff;
-    padding: 10px 0;
-    text-align: center;
-    display: flex;
-    justify-content: space-between;
-}
-
-header h1 {
-    margin: 0;
-}
-
-section {
-    margin: 20px 0;
-}
-
-#form-section {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-#data-form {
-  font-size: 11px;
-}
-
-#data-form label {
-    display: block;
-    margin-bottom: 10px;
-}
-
-#data-form input[type='date'],
-#data-form input[type='text'],
-#data-form input[type='number'] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-#data-form button {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    background-color: #5cb85c;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-#data-form button:hover {
-    background-color: #4cae4c;
-}
-
-#data-section {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-th, td {
-    padding: 12px;
-    border-bottom: 1px solid #ddd;
-}
-
-th {
-    background-color: #f8f8f8;
-}
-
-tr:hover {
-    background-color: #f1f1f1;
-}
-
-#total-section {
-    background: #fff;
-    padding: 20px;
-    margin-top: 20px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-#total-section p {
-    font-size: 11px;
-    margin: 5px 0;
-    color: #333;
-}
-
-#total-section p:nth-child(3) {
-    font-weight: bold;
-    color: #28a745;
-}
-
-.dark-mode #data-form input[type='date'],
-.dark-mode #data-form input[type='text'],
-.dark-mode #data-form input[type='number'] {
-    width: 100%;
-    background-color: grey;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-.dark-mode {
-    background-color: #121212;
-    color: #ffffff;
-}
-
-.dark-mode header {
-    background: #1c1c1c;
-    color: #ffffff;
-}
-
-.dark-mode .sidebar {
-    background: #1c1c1c;
-    color: #ffffff;
-}
-
-.dark-mode #form-section,
-.dark-mode #data-section,
-.dark-mode #total-section,
-.dark-mode #total-section p{
-    background: #222;
-    color: #ffffff;
-}
-
-.dark-mode #total-section p:nth-child(3) {
-    font-weight: bold;
-    color: #28a745;
-}
-
-.dark-mode table {
-    border: 1px solid #333;
-}
-
-.dark-mode th,
-.dark-mode td {
-    border-bottom: 1px solid #333;
-}
-
-.dark-mode th {
-    background-color: #333;
-}
-
-#dark-mode-toggle {
-    padding: 10px 15px;
-    background-color: #555;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s, transform 0.3s;
-}
-
-#dark-mode-toggle:hover {
-    background-color: #666;
-    transform: scale(1.05);
-}
-
-#dark-mode-toggle:active {
-    transform: scale(0.95);
-}
-
-.dark-mode #dark-mode-toggle {
-    background-color: #333;
-    color: #ddd;
-}
-
-.dark-mode tr:hover{
-  background-color: grey;
-}
-
-.sidebar {
-  height: 100%;
-  width: 250px;
-  position: fixed;
-  top: 0;
-  right: -250px; 
-  background-color: #333;
-  overflow-x: hidden;
-  transition: right 0.3s ease;
-}
-
-.sidebar.show {
-  right: 0;
-}
-
-.sidebar-header {
-  padding: 20px;
-  text-align: center;
-}
-
-.sidebar-header h1 {
-  color: white;
-  margin: 0;
-}
-
-.sidebar ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-.sidebar ul li {
-  padding: 15px;
-  border-bottom: 1px solid #555;
-}
-
-.sidebar ul li:last-child {
-  border-bottom: none;
-}
-
-.sidebar ul li a {
-  color: #fff;
-  text-decoration: none;
-  display: block;
-}
-
-.sidebar ul li a:hover {
-  background-color: #555;
-}
-
-.sidebar-close {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  color: #fff;
-  cursor: pointer;
-}
-
-.content {
-  margin-right: 0;
-  margin-left: 0;
-  padding: 20px;
-  transition: margin-left 0.3s ease;
-}
-
-.sidebar-toggle {
-  position: absolute;
-  top: 25px;
-  right: 20px;
-  color: #fff;
-  cursor: pointer;
-}
-
-.sidebar-toggle i {
-  font-size: 20px;
-}
-
-@media screen and (max-width:560px) {
-  .sidebar {
-    width: 200px;
-  }
-  #data-table {
-    font-size: 8px;
-  }
-}
+        header h1 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+        }
+        section {
+            margin: 20px 0;
+        }
+        #form-section, #data-section, #total-section {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        #data-form {
+            font-size: 11px;
+        }
+        #data-form label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        #data-form input[type='date'],
+        #data-form input[type='text'],
+        #data-form input[type='number'] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        #data-form button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #data-form button:hover {
+            background-color: #4cae4c;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f8f8f8;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        #total-section p {
+            font-size: 11px;
+            margin: 5px 0;
+            color: #333;
+        }
+        #total-section p:nth-child(3) {
+            font-weight: bold;
+            color: #28a745;
+        }
+        .dark-mode #data-form input[type='date'],
+        .dark-mode #data-form input[type='text'],
+        .dark-mode #data-form input[type='number'] {
+            width: 100%;
+            background-color: grey;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .dark-mode {
+            background-color: #121212;
+            color: #ffffff;
+        }
+        .dark-mode header {
+            background: #1c1c1c;
+            color: #ffffff;
+        }
+        .dark-mode .sidebar {
+            background: #1c1c1c;
+            color: #ffffff;
+        }
+        .dark-mode #form-section,
+        .dark-mode #data-section,
+        .dark-mode #total-section,
+        .dark-mode #total-section p{
+            background: #222;
+            color: #ffffff;
+        }
+        .dark-mode #total-section p:nth-child(3) {
+            font-weight: bold;
+            color: #28a745;
+        }
+        .dark-mode table {
+            border: 1px solid #333;
+        }
+        .dark-mode th,
+        .dark-mode td {
+            border-bottom: 1px solid #333;
+        }
+        .dark-mode th {
+            background-color: #333;
+        }
+        #dark-mode-toggle {
+            padding: 10px 15px;
+            background-color: #555;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        #dark-mode-toggle:hover {
+            background-color: #666;
+            transform: scale(1.05);
+        }
+        #dark-mode-toggle:active {
+            transform: scale(0.95);
+        }
+        .dark-mode #dark-mode-toggle {
+            background-color: #333;
+            color: #ddd;
+        }
+        .dark-mode tr:hover {
+            background-color: grey;
+        }
+        .sidebar {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            right: -250px; 
+            background-color: #333;
+            overflow-x: hidden;
+            transition: right 0.3s ease;
+        }
+        .sidebar.show {
+            right: 0;
+        }
+        .sidebar-header {
+            padding: 20px;
+            text-align: center;
+            background-color: #444;
+        }
+        .sidebar-header h1 {
+            color: white;
+            margin: 0;
+        }
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .sidebar ul li {
+            padding: 15px;
+            border-bottom: 1px solid #555;
+        }
+        .sidebar ul li:last-child {
+            border-bottom: none;
+        }
+        .sidebar ul li a {
+            color: #fff;
+            text-decoration: none;
+            display: block;
+        }
+        .sidebar ul li a:hover {
+            background-color: #555;
+        }
+        .sidebar-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: #fff;
+            cursor: pointer;
+        }
+        .content {
+            margin-right: 0;
+            margin-left: 0;
+            padding: 20px;
+            transition: margin-left 0.3s ease;
+        }
+        .sidebar-toggle {
+            position: absolute;
+            top: 25px;
+            right: 20px;
+            color: #fff;
+            cursor: pointer;
+        }
+        .sidebar-toggle i {
+            font-size: 20px;
+        }
+        @media screen and (max-width: 560px) {
+            .sidebar {
+                width: 200px;
+            }
+            #data-table {
+                font-size: 8px;
+            }
+        }
+        .notification-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .notification {
+            background-color: #4CAF50;
+            color: white;
+            display: inline-block;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .confirm-dialog {
+            display: none;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .confirm-dialog-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .confirm-dialog-content p {
+            margin-bottom: 20px;
+        }
+        .confirm-dialog-content button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .confirm-dialog-content .confirm-yes {
+            background-color: #d9534f;
+            color: white;
+        }
+        .confirm-dialog-content .confirm-no {
+            background-color: #5bc0de;
+            color: white;
+        }
     </style>
 </head>
 <body>
     <header>
         <h1>KasKita</h1>
-      <span class="sidebar-toggle" id="sidebarToggle"><i class="fas fa-align-justify"></i></i></span>
+        <span class="sidebar-toggle" id="sidebarToggle"><i class="fas fa-align-justify"></i></span>
     </header>
-    
- <div class="sidebar" id="sidebar">
-    <div class="sidebar-header">
-      <h1>Menu</h1>
-      <span class="sidebar-close" id="sidebarClose"><i class="fas fa-times"></i></span>
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h1>Menu</h1>
+            <span class="sidebar-close" id="sidebarClose"><i class="fas fa-times"></i></span>
+        </div>
+        <ul>
+          <li><button id="dark-mode-toggle">Dark Mode</button></li>
+        </ul>
     </div>
-    <ul>
-      <li><button id="dark-mode-toggle">Dark Mode</button></li>
-    </ul>
-  </div>
-  
-  <div class="content">
-      <section id="form-section">
-        <form id="data-form">
-            <label for="tanggal">Tanggal:</label>
-            <input type="date" id="tanggal" name="tanggal" required>
-
-            <label for="keterangan">Keterangan:</label>
-            <input type="text" id="keterangan" name="keterangan" required>
-
-            <label for="pemasukan">Pemasukan:</label>
-            <input type="number" id="pemasukan" name="pemasukan" required>
-
-            <label for="pengeluaran">Pengeluaran:</label>
-            <input type="number" id="pengeluaran" name="pengeluaran" required>
-
-            <button type="submit">Simpan</button>
-        </form>
-    </section>
-
-    <section id="data-section">
-        <table id="data-table">
-            <thead>
-                <tr>
-                    <th>Tanggal</th>
-                    <th>Keterangan</th>
-                    <th>Pemasukan</th>
-                    <th>Pengeluaran</th>
-                </tr>
-            </thead>
-            <tbody>
-              
-            </tbody>
-        </table>
-    </section>
-    <div id="total-section">
-      
+    <div class="content">
+        <section id="form-section">
+            <form id="data-form">
+                <label for="tanggal">Tanggal:</label>
+                <input type="date" id="tanggal" name="tanggal" required>
+                <label for="keterangan">Keterangan:</label>
+                <input type="text" id="keterangan" name="keterangan" required>
+                <label for="pemasukan">Pemasukan:</label>
+                <input type="number" id="pemasukan" name="pemasukan" required>
+                <label for="pengeluaran">Pengeluaran:</label>
+                <input type="number" id="pengeluaran" name="pengeluaran" required>
+                <button type="submit">Simpan</button>
+            </form>
+        </section>
+        <div class="notification-container">
+            <div class="notification" id="notification" style="display: none;">
+                Terima Kasih Telah Membayar Kas
+            </div>
+        </div>
+        <section id="data-section">
+            <table id="data-table">
+                <thead>
+                    <tr>
+                        <th>Tanggal</th>
+                        <th>Keterangan</th>
+                        <th>Pemasukan</th>
+                        <th>Pengeluaran</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </section>
+        <div id="total-section">
+        </div>
     </div>
-  </div>
-  
-  <script type="text/javascript" charset="utf-8">
-    document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('data-form');
-    const dataTable = document.getElementById('data-table').getElementsByTagName('tbody')[0];
-    const totalSection = document.getElementById('total-section');
-
-    function toggleDarkMode() {
-        const isDarkMode = document.body.classList.toggle('dark-mode');
-        localStorage.setItem('darkMode', isDarkMode);
-    }
-
-    document.getElementById('dark-mode-toggle').addEventListener('click', toggleDarkMode);
-
-    if (localStorage.getItem('darkMode') === 'true') {
-        document.body.classList.add('dark-mode');
-    }
-
-    form.addEventListener('submit', function(event) {
-        event.preventDefault();
-
-        const tanggal = document.getElementById('tanggal').value;
-        const keterangan = document.getElementById('keterangan').value;
-        const pemasukan = parseFloat(document.getElementById('pemasukan').value);
-        const pengeluaran = parseFloat(document.getElementById('pengeluaran').value);
-
-        const data = {
-            tanggal,
-            keterangan,
-            pemasukan,
-            pengeluaran
-        };
-
-        tambahDataKeLocalStorage(data);
-
-        tampilkanData();
-    });
-
-    function tambahDataKeLocalStorage(data) {
-        const dataKasDesa = JSON.parse(localStorage.getItem('dataKasDesa')) || [];
-        dataKasDesa.push(data);
-        localStorage.setItem('dataKasDesa', JSON.stringify(dataKasDesa));
-    }
-
-    function tampilkanData() {
-        dataTable.innerHTML = '';
-        let totalPemasukan = 0;
-        let totalPengeluaran = 0;
-        const dataKasDesa = JSON.parse(localStorage.getItem('dataKasDesa')) || [];
-
-        dataKasDesa.forEach((item, index) => {
-            const row = dataTable.insertRow();
-            row.innerHTML = `
-                <td>${item.tanggal}</td>
-                <td>${item.keterangan}</td>
-                <td>${item.pemasukan}</td>
-                <td>${item.pengeluaran}</td>
-            `;
-            totalPemasukan += item.pemasukan;
-            totalPengeluaran += item.pengeluaran;
-
-            row.addEventListener('contextmenu', function(event) {
+    <div class="confirm-dialog" id="confirmDialog">
+        <div class="confirm-dialog-content">
+            <p>Apakah Anda yakin ingin menghapus data ini?</p>
+            <button class="confirm-yes" id="confirmYes">Ya</button>
+            <button class="confirm-no" id="confirmNo">Tidak</button>
+        </div>
+    </div>
+    <script type="text/javascript" charset="utf-8">
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('data-form');
+            const dataTable = document.getElementById('data-table').getElementsByTagName('tbody')[0];
+            const totalSection = document.getElementById('total-section');
+            const notification = document.getElementById('notification');
+            const confirmDialog = document.getElementById('confirmDialog');
+            let deleteIndex = null;
+            function toggleDarkMode() {
+                const isDarkMode = document.body.classList.toggle('dark-mode');
+                localStorage.setItem('darkMode', isDarkMode);
+            }
+            document.getElementById('dark-mode-toggle').addEventListener('click', toggleDarkMode);
+            if (localStorage.getItem('darkMode') === 'true') {
+                document.body.classList.add('dark-mode');
+            }
+            form.addEventListener('submit', function(event) {
                 event.preventDefault();
-                const confirmDelete = confirm('Apakah Anda yakin ingin menghapus data ini?');
-                if (confirmDelete) {
-                    hapusData(index);
-                }
+                const tanggal = document.getElementById('tanggal').value;
+                const keterangan = document.getElementById('keterangan').value;
+                const pemasukan = parseFloat(document.getElementById('pemasukan').value);
+                const pengeluaran = parseFloat(document.getElementById('pengeluaran').value);
+                const data = {
+                    tanggal,
+                    keterangan,
+                    pemasukan,
+                    pengeluaran
+                };
+                tambahDataKeLocalStorage(data);
+                tampilkanData();
+                tampilkanNotifikasi();
             });
+            function tambahDataKeLocalStorage(data) {
+                const dataKasDesa = JSON.parse(localStorage.getItem('dataKasDesa')) || [];
+                dataKasDesa.push(data);
+                localStorage.setItem('dataKasDesa', JSON.stringify(dataKasDesa));
+            }
+            function tampilkanData() {
+                dataTable.innerHTML = '';
+                let totalPemasukan = 0;
+                let totalPengeluaran = 0;
+                const dataKasDesa = JSON.parse(localStorage.getItem('dataKasDesa')) || [];
+                dataKasDesa.forEach((item, index) => {
+                    const row = dataTable.insertRow();
+                    row.innerHTML = `
+                        <td>${item.tanggal}</td>
+                        <td>${item.keterangan}</td>
+                        <td>${item.pemasukan}</td>
+                        <td>${item.pengeluaran}</td>
+                    `;
+                    totalPemasukan += item.pemasukan;
+                    totalPengeluaran += item.pengeluaran;
+                    row.addEventListener('contextmenu', function(event) {
+                        event.preventDefault();
+                        deleteIndex = index;
+                        confirmDialog.style.display = 'flex';
+                    });
+                });
+                const sisaUangKas = totalPemasukan - totalPengeluaran;
+                totalSection.innerHTML = `
+                    <p>Total Pemasukan: ${totalPemasukan}</p>
+                    <p>Total Pengeluaran: ${totalPengeluaran}</p>
+                    <p>Sisa Uang Kas: ${sisaUangKas}</p>
+                `;
+            }
+            function tampilkanNotifikasi() {
+                notification.style.display = 'block';
+                setTimeout(() => {
+                    notification.style.display = 'none';
+                }, 3000);
+            }
+            document.getElementById('confirmYes').addEventListener('click', function() {
+                hapusData(deleteIndex);
+                confirmDialog.style.display = 'none';
+            });
+            document.getElementById('confirmNo').addEventListener('click', function() {
+                confirmDialog.style.display = 'none';
+            });
+            function hapusData(index) {
+                const dataKasDesa = JSON.parse(localStorage.getItem('dataKasDesa')) || [];
+                dataKasDesa.splice(index, 1);
+                localStorage.setItem('dataKasDesa', JSON.stringify(dataKasDesa));
+                tampilkanData();
+            }
+            const sidebar = document.getElementById('sidebar');
+            const sidebarToggle = document.getElementById('sidebarToggle');
+            const sidebarClose = document.getElementById('sidebarClose');
+            const sidebarItems = document.querySelectorAll('.sidebar ul li a');
+            sidebarToggle.addEventListener('click', () => {
+                sidebar.classList.toggle('show');
+            });
+            sidebarClose.addEventListener('click', () => {
+                sidebar.classList.remove('show');
+            });
+            sidebarItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    sidebar.classList.remove('show');
+                });
+            });
+            tampilkanData();
         });
-
-        const sisaUangKas = totalPemasukan - totalPengeluaran;
-
-        totalSection.innerHTML = `
-            <p>Total Pemasukan: ${totalPemasukan}</p>
-            <p>Total Pengeluaran: ${totalPengeluaran}</p>
-            <p>Sisa Uang Kas: ${sisaUangKas}</p>
-        `;
-    }
-
-    function hapusData(index) {
-        const dataKasDesa = JSON.parse(localStorage.getItem('dataKasDesa')) || [];
-        dataKasDesa.splice(index, 1);
-        localStorage.setItem('dataKasDesa', JSON.stringify(dataKasDesa));
-        tampilkanData();
-    }
-    
-    const sidebar = document.getElementById('sidebar');
-const sidebarToggle = document.getElementById('sidebarToggle');
-const sidebarClose = document.getElementById('sidebarClose');
-const sidebarItems = document.querySelectorAll('.sidebar ul li a');
-
-sidebarToggle.addEventListener('click', () => {
-  sidebar.classList.toggle('show');
-});
-
-sidebarClose.addEventListener('click', () => {
-  sidebar.classList.remove('show');
-});
-
-sidebarItems.forEach(item => {
-  item.addEventListener('click', () => {
-    sidebar.classList.remove('show');
-  });
-});
-    
-    tampilkanData();
-});
-
-  </script>
+    </script>
 </body>
 </html>
